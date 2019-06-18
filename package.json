@@ -1,0 +1,14 @@
+{
+  "name": "bigdata",
+  "version": "1.0.0",
+  "description": "Final project BigData course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bar zamsky & Shahar botesazan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
