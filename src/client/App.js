@@ -4,6 +4,7 @@ import history from "./history";
 import './app.css';
 
 import Main from './components/Main';
+import Upload from './components/Upload'
 
 class App extends Component {
 
@@ -12,6 +13,7 @@ class App extends Component {
             <Router basename="/" history={history}>
                     <Switch>
                         <Route path='/' exact component={Main} />
+                        <Route path='/upload' exact component={Upload} />
                     </Switch>
             </Router>
         );

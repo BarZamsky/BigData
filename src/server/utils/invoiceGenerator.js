@@ -1,7 +1,7 @@
-const fs = require('fs'),
-ObjectID = require('mongodb').ObjectID;
+const fs = require('fs');
 
-const vendors = ["Rami Levy - Hashikma Marketing", "Mega", "Shufersal", "Hazi-Hinam", "Osher ad"]
+const vendors = ["Rami Levy - Hashikma Marketing", "Mega", "Shufersal", "Hazi-Hinam", "Osher ad",
+          "Victory", "Tiv-Taam", "AM:PM"]
 
 const products = [{
     id: "milk 1%",
@@ -105,13 +105,16 @@ const products = [{
   }
 ]
 
-let i = 36;
+let i =35;
 while (i < 51) {
 
   let invoice = {
     invoiceNumber: "45"+i,
+    date: randomDate(new Date(2019, 0, 1), new Date()),
     provider: vendors[Math.floor(Math.random() * vendors.length)],
     items: [
+      products[Math.floor(Math.random() * products.length)],
+      products[Math.floor(Math.random() * products.length)],
       products[Math.floor(Math.random() * products.length)],
       products[Math.floor(Math.random() * products.length)],
       products[Math.floor(Math.random() * products.length)],
@@ -136,10 +139,14 @@ while (i < 51) {
 
   invoice["total"] = getTotalPrice(invoice["items"])
 
-  fs.writeFile("invoices/invoice"+i+".json", JSON.stringify(invoice), function(err) {
+  fs.writeFile("../invoices/invoice"+i+".json", JSON.stringify(invoice), function(err) {
     if (err) throw err;
   })
     i++;
+}
+
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
 function getTotalPrice(items) {

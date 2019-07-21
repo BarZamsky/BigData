@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
-import '../App.css'
+import React, { Component, Fragment } from 'react'
+import history from '../history';
 import axios from 'axios'
+
+import '../App.css'
 
 class Upload extends Component {
   constructor() {
@@ -34,17 +36,26 @@ class Upload extends Component {
         console.log(res.statusText)
       })
   }
+
+  onClickHandler = (e) => {
+      history.push("/");
+  }
+
   render() {
     return (
+      <Fragment>
+      <p className="upload-title">Upload new invoice </p>
       <div className="upload-main">
-      <p className="text-upload" >Add invoice: </p>
+      <p className="text-upload" >Upload invoice - </p>
         <input className="files-btn" type="file" name="" id="" onChange={this.handleselectedFile} />
         <button className="files-btn" onClick={this.handleUpload}>Upload</button>
-        <div> {Math.round(this.state.loaded, 2)} %</div>
+        <div className="upload-persent"> {Math.round(this.state.loaded, 2)} %</div>
         <div>
           {this.state.done ? <p> file uploaded successfuly !! </p> : <p> </p>}
         </div>
       </div>
+      <button className="btn-back" onClick={this.onClickHandler}> Back </button>
+      </Fragment>
     )
   }
 }
