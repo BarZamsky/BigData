@@ -6,7 +6,6 @@ const MongoClient = require('mongodb').MongoClient,
   fs = require('fs')
 
 const dbUrl = 'mongodb://127.0.0.1:27017/';
-const dbCollection = "BigData";
 
 function mongoVendorCollection(fileName) {
   var file = fs.readFileSync(`src/server/public/files/${fileName}`);
@@ -22,7 +21,7 @@ function mongoVendorCollection(fileName) {
   });
 }
 
-var insertDocument = function(db, invoice, callback) {
+function insertDocument(db, invoice, callback) {
    // first try to update; if a document could be updated, we're done
    console.log("Processing for "+ invoice.provider);
    updateProviderInvoices( db, invoice, function (results) {
@@ -48,7 +47,8 @@ var insertDocument = function(db, invoice, callback) {
   };
 
 var updateProviderInvoices = function(db, invoice , callback) {
-   db.collection(dbCollection).updateOne(
+  console.log(invoice.provider);
+   db.collection("vendors").updateOne(
       { "provider" : invoice.provider },
       {
         $push: { invoices:  invoice },

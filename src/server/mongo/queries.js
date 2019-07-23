@@ -9,7 +9,7 @@ let db;
 const vendors = ["Rami Levy - Hashikma Marketing", "Mega", "Shufersal", "Hazi-Hinam", "Osher ad",
           "Victory", "Tiv-Taam", "AM:PM"];
 
-function getVolume(productName, start, end, callBack) {
+  function getVolume(productName, start, end, callBack) {
   MongoClient.connect(dbUrl, { useNewUrlParser: true }, function(err, client) {
     assert.equal(null, err);
     console.log("Connected correctly to server");
@@ -95,4 +95,41 @@ function getVolume(productName, start, end, callBack) {
       });
   }
 
-module.exports = {getVolume, getPriceChange};
+  function getVendorsData(callBack) {
+    MongoClient.connect(dbUrl, { useNewUrlParser: true }, function(err, client) {
+      assert.equal(null, err);
+      console.log("Connected correctly to server");
+      db = client.db("BigData");
+
+      let vendorsData = [];
+
+      db.collection("vendors").find({}).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+
+        for (res of result) {
+          let vendor = {
+            name: res.provider,
+            orders: res.totalOrders,
+            sum: res.totalSum
+          }
+          vendorsData.push(vendor);
+        }
+
+        for (const vendor of vendors) {
+          if (!vendorsData.some(item => item.name === vendor)) {
+            let newVendor = {
+              name: vendor,
+              orders: 0,
+              sum: 0
+            }
+            vendorsData.push(newVendor);
+          }
+        }
+
+        return callBack(vendorsData);
+      });
+    })
+  }
+
+module.exports = {getVolume, getPriceChange, getVendorsData};

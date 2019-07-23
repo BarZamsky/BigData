@@ -6,7 +6,7 @@ const express = require('express'),
  fileUpload = require('express-fileupload'),
  {uploadToHdfs, uploadToMongo, sendToKafka} = require('./utils/functions'),
  {mongoVendorCollection} = require('./mongo/mongo'),
- {getVolume, getPriceChange} = require('./mongo/queries')
+ {getVolume, getPriceChange, getVendorsData} = require('./mongo/queries')
 
  const app = express();
 
@@ -64,6 +64,12 @@ app.post('/upload', (req, res, next) => {
     let end = req.body['end'];
 
     getPriceChange(productName, start, end, function(result) {
+      res.status(200).send(result);
+    });
+  })
+
+  app.get('/vendors', async (req, res) => {
+    getVendorsData(function(result) {
       res.status(200).send(result);
     });
   })
