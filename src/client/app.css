@@ -7,6 +7,15 @@ body {
     background-color: 	#fff;
 }
 
+.footer {
+  position: fixed;
+  display: block;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 5px;
+}
+
 .main-page {
   position: relative;
   width: 100%;
@@ -50,6 +59,7 @@ body {
 
 .upload-main {
   display: relative;
+  align-content: center;
   width: 500px;
   margin: 10px;
   padding: 5px;

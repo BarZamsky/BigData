@@ -8,6 +8,7 @@ class VendorsChart extends Component {
   constructor(props) {
       super(props);
 
+
     const options = {
       scales: {
         xAxes: [{
@@ -17,12 +18,19 @@ class VendorsChart extends Component {
         yAxes: [{
           id: "y-axis-orders",
           ticks: {
-            precision: 0,
+            beginAtZero: true,
+          callback: function(value) {if (value % 1 === 0) {return value;}},
+             fontSize: 16,
+             fontColor: 'black'
           }
         }, {
           id: "y-axis-sum",
           ticks: {
-            precision: 0,
+            beginAtZero: true,
+          callback: function(value) {if (value % 1 === 0) {return value;}
+        },
+             fontSize: 16,
+             fontColor: 'black'
           }
         }]
       }
@@ -33,7 +41,6 @@ class VendorsChart extends Component {
         chartOptions: options
       };
     }
-
 
     componentDidMount = (e) => {
       axios
@@ -80,7 +87,6 @@ class VendorsChart extends Component {
         console.log(error);
       });
     }
-
 
 render() {
   const { chartData, chartOptions } = this.state;

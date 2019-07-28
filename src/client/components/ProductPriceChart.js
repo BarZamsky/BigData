@@ -153,8 +153,9 @@ render() {
      <div className={this.state.showGraph ? "container" : ""}>
      <h2 className="chart-title">Choose product and dates to compare his price among the vendors: </h2>
      <div className="data-to-pick">
-        <p>Start date: <DatePicker selected={this.state.startDate} onChange={this.handleChangeStart} className="date"/></p>
-        <p>End date:   <DatePicker selected={this.state.endDate} onChange={this.handleChangeEnd} className="date"/></p>
+        <p>Start date:
+        <DatePicker selected={this.state.startDate} onChange={this.handleChangeStart} className="date" dateFormat="dd/MM/yyyy"/></p>
+        <p>End date:   <DatePicker selected={this.state.endDate} onChange={this.handleChangeEnd} className="date" dateFormat="dd/MM/yyyy"/></p>
         <Select
           value={this.state.selectedOption}
           onChange={this.handleChange}

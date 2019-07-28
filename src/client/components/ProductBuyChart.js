@@ -47,7 +47,13 @@ class ProductBuyChart extends Component {
           stacked: true
         }],
         yAxes: [{
-          stacked: true
+          stacked: true,
+          ticks: {
+            beginAtZero: true,
+          callback: function(value) {if (value % 1 === 0) {return value;}},
+             fontSize: 16,
+             fontColor: 'black'
+          }
         }]
       }
     };
@@ -152,8 +158,8 @@ render() {
      <div className={this.state.showGraph ? "container" : ""}>
      <h2 className="chart-title">Choose product and dates to compare volume of purchases among the vendors: </h2>
      <div className="data-to-pick">
-        <p>Start date: <DatePicker selected={this.state.startDate} onChange={this.handleChangeStart} className="date"/></p>
-        <p>End date:   <DatePicker selected={this.state.endDate} onChange={this.handleChangeEnd} className="date"/></p>
+        <p>Start date: <DatePicker selected={this.state.startDate} onChange={this.handleChangeStart} className="date" dateFormat="dd/MM/yyyy"/></p>
+        <p>End date:   <DatePicker selected={this.state.endDate} onChange={this.handleChangeEnd} className="date" dateFormat="dd/MM/yyyy"/></p>
         <Select
           value={this.state.selectedOption}
           onChange={this.handleChange}
