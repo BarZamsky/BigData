@@ -115,14 +115,16 @@ body {
   margin-bottom: 250px;
 }
 
+.chart-main {
+  width: 900px;
+  align-content: center;
+}
+
 .chart-container {
-  position: relative;
-  display: flex;
   margin: 5px;
   padding: 5px;
-  align-items: right;
+  align-content: center;
   width: 100%;
-  height: 300px;
 }
 
 .chart-title {

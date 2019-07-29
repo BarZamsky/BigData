@@ -6,7 +6,7 @@ const express = require('express'),
  fileUpload = require('express-fileupload'),
  {uploadToHdfs, uploadToMongo, sendToKafka} = require('./utils/functions'),
  {mongoVendorCollection} = require('./mongo/mongo'),
- {getVolume, getPriceChange, getVendorsData} = require('./mongo/queries')
+ {getVolume, getPriceChange, getVendorsData, getVendorInvoicesSummary} = require('./mongo/queries')
 
  const app = express();
 
@@ -73,5 +73,16 @@ app.post('/upload', (req, res, next) => {
       res.status(200).send(result);
     });
   })
+
+  app.get('/:vendorId', async (req, res) => {
+    if (!req.params['vendorId']) {
+      res.status(404).send();
+    } else {
+      let vendor = req.params['vendorId'];
+      getVendorInvoicesSummary(vendor, function(result) {
+        res.status(200).send(result);
+      });
+    }
+  });
 
 app.listen(process.env.PORT || 8080, () => console.log(`server running on port ${process.env.PORT || 8080}!`));

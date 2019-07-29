@@ -9,6 +9,8 @@ let db;
 const vendors = ["Rami Levy - Hashikma Marketing", "Mega", "Shufersal", "Hazi-Hinam", "Osher ad",
           "Victory", "Tiv-Taam", "AM:PM"];
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
   function getVolume(productName, start, end, callBack) {
   MongoClient.connect(dbUrl, { useNewUrlParser: true }, function(err, client) {
     assert.equal(null, err);
@@ -132,4 +134,41 @@ const vendors = ["Rami Levy - Hashikma Marketing", "Mega", "Shufersal", "Hazi-Hi
     })
   }
 
-module.exports = {getVolume, getPriceChange, getVendorsData};
+  function getVendorInvoicesSummary(vendor, callBack) {
+    MongoClient.connect(dbUrl, { useNewUrlParser: true }, function(err, client) {
+      assert.equal(null, err);
+      console.log("Connected correctly to server");
+      db = client.db("BigData");
+
+
+      let res = db.collection("vendors").find({
+        provider: vendor
+      }).toArray(function(err, result) {
+          if (err) throw err;
+          console.log(result);
+          let invoices = [];
+          if (result.length == 0) {
+            return callBack(result);
+          }
+
+          for (const m of months) {
+            let month = {
+              month: m,
+              count: 0
+            }
+            invoices.push(month);
+          }
+
+          for (const invoice of result[0]['invoices']) {
+            let date = new Date(invoice['date']);
+            let m = months[date.getMonth()];
+            let index = invoices.findIndex(x => x.month === m);
+            invoices[index].count++;
+          }
+
+          return callBack(invoices);
+      });
+    });
+  };
+
+module.exports = {getVolume, getPriceChange, getVendorsData, getVendorInvoicesSummary};
