@@ -112,12 +112,13 @@ body {
 }
 
 .container {
-  margin-bottom: 250px;
+  /* margin-bottom: 250px; */
 }
 
 .chart-main {
-  width: 900px;
+  width: 800px;
   align-content: center;
+  margin-left: 40px;
 }
 
 .chart-container {
@@ -128,9 +129,7 @@ body {
 }
 
 .chart-title {
-  /* text-align: center; */
-  position: relative;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   display: block;
   font-size: 20px;
 }

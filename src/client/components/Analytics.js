@@ -19,7 +19,7 @@ class Analytics extends Component {
         <button className="btn-back rigth" onClick={this.onClickHandler}>Back</button>
         <p className="title">Analytics screen</p>
       </div>
-      <div className="main-page">
+      <div className="charts_container">
         <ProductBuyChart />
         <ProductPriceChart />
       </div>

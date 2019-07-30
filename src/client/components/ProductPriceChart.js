@@ -166,7 +166,7 @@ render() {
      </div>
 
      {this.state.showGraph ?
-     <div className="chart-container">
+     <div className="chart-main">
        <LineChart data={chartData} options={chartOptions} width="600" height="250" />
        </div>
        : <div></div>

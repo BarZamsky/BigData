@@ -170,8 +170,8 @@ render() {
      </div>
 
      {this.state.showGraph ?
-     <div className="chart-container">
-       <BarChart data={chartData} options={chartOptions} width="600" height="250" />
+     <div className="chart-main">
+       <BarChart data={chartData} options={chartOptions} width="150" height="100" />
        </div>
        : <div></div>
      }

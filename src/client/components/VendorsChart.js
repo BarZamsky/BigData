@@ -5,6 +5,8 @@ import React, {
 import {
   Bar as BarChart
 } from 'react-chartjs-2';
+
+import {Line as LineChart} from 'react-chartjs-2';
 import axios from 'axios';
 
 import '../App.css'
@@ -21,8 +23,8 @@ class VendorsChart extends Component {
         yAxes: [{
           stacked: true,
           ticks: {
-            beginAtZero: true,
-          callback: function(value) {if (value % 1 === 0) {return value;}},
+            min: 0,
+            callback: function(value) {if (value % 1 === 0) {return value;}},
              fontSize: 16,
              fontColor: 'black'
           }
@@ -58,20 +60,16 @@ class VendorsChart extends Component {
           beginAtZero: true,
           datasets: [{
             label: 'Total incomes',
-            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-            borderColor: 'rgba(255, 159, 64, 0.2)',
+            backgroundColor: '#2F4F4F',
+            borderColor: '#2F4F4F',
             borderWidth: 0,
-            hoverBackgroundColor: 'rgba(255, 159, 64, 0.4)',
-            hoverBorderColor: 'rgba(255, 159, 64, 1)',
             data: totalSum,
             yAxisID: "y-axis-sum"
           }, {
             label: 'Total invoices',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 0.2)',
+            backgroundColor: '#00CED1',
+            borderColor: '#00CED1',
             borderWidth: 0,
-            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-            hoverBorderColor: 'rgba(255,99,132,1)',
             data: invoiceCount,
             yAxisID: "y-axis-orders"
           }]
@@ -108,11 +106,12 @@ class VendorsChart extends Component {
           beginAtZero: true,
           datasets: [{
             label: 'Invoices issued',
-            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-            borderColor: 'rgba(255, 159, 64, 0.2)',
-            borderWidth: 0,
-            hoverBackgroundColor: 'rgba(255, 159, 64, 0.4)',
-            hoverBorderColor: 'rgba(255, 159, 64, 1)',
+            fill: 'none',
+            backgroundColor: '	#00008B',
+            borderColor: '	#00008B',
+            borderWidth: 1,
+            pointRadius: 2,
+            lineTension: 0,
             data: invoiceCount
           }]
         };
@@ -179,7 +178,7 @@ class VendorsChart extends Component {
         height = "200" />
 
         {this.state.showData ?
-        <BarChart data = {vendorData}
+        <LineChart data = {vendorData}
           options = {vendorsOptions}
           width = "400"
           height = "200" />
