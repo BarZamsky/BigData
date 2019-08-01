@@ -4,7 +4,7 @@
   "description": "Final project at BigData course",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "cd src/client && npm install && npm run build",
+    "heroku-postbuild": "cd src/client && npm install && npm start",
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
