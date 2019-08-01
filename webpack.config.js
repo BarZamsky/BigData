@@ -11,7 +11,18 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    rules: [{
+    rules: [
+      {
+          test: /\.html$/,
+          exclude: [/node_modules/, require.resolve('./index.html')],
+          use: {
+              loader: 'file-loader',
+              query: {
+                  name: '[name].[ext]'
+              },
+          },
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
