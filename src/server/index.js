@@ -13,16 +13,8 @@ const express = require('express'),
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-const DIST_DIR = path.join(__dirname, './dist'); // NEW
-const HTML_FILE = path.join(DIST_DIR, 'index.html');
-
-app.use(express.static(DIST_DIR));
+app.use(express.static(__dirname + "/dist"));
 app.use(fileUpload())
-
-app.get('/', (req, res) => {
-  res.sendFile(HTML_FILE); // EDIT
-});
 
 app.post('/api/upload', (req, res, next) => {
   let uploadFile = req.files.file
