@@ -14,7 +14,7 @@ module.exports = {
     rules: [
       {
           test: /\.html$/,
-          exclude: [/node_modules/, require.resolve('./index.html')],
+          exclude: [/node_modules/],
           use: {
               loader: 'file-loader',
               query: {

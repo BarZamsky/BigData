@@ -14,7 +14,13 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static('dist'));
-app.use(fileUpload())
+app.use(fileUpload());
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.post('/api/upload', (req, res, next) => {
   let uploadFile = req.files.file
