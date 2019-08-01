@@ -13,7 +13,7 @@ const express = require('express'),
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(express.static(__dirname + "/dist"));
+app.use(express.static(__dirname + '/www'));
 app.use(fileUpload())
 
 app.post('/api/upload', (req, res, next) => {
