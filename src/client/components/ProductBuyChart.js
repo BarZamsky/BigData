@@ -87,7 +87,7 @@ class ProductBuyChart extends Component {
         console.log(body);
         e.preventDefault();
         axios
-        .post("http://localhost:8080/product-volume", body)
+        .post("/api/product-volume", body)
         .then(response => {
           this.setState({showGraph: true})
           console.log(response.data);

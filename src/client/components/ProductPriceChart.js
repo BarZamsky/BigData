@@ -95,7 +95,7 @@ class ProductPriceChart extends Component {
         console.log(body);
         e.preventDefault();
         axios
-        .post("http://localhost:8080/product-price", body)
+        .post("/api/product-price", body)
         .then(response => {
           this.setState({showGraph: true})
           console.log(response.data);

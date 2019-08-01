@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use(express.static('dist'));
 app.use(fileUpload())
 
-app.post('/upload', (req, res, next) => {
+app.post('/api/upload', (req, res, next) => {
   let uploadFile = req.files.file
   const fileName = req.files.file.name
   uploadFile.mv(
@@ -36,11 +36,11 @@ app.post('/upload', (req, res, next) => {
       }});
   });
 
-  app.get('/best-seller', (req, res) => {
+  app.get('/api/best-seller', (req, res) => {
     res.send('test')
   })
 
-  app.post('/product-volume', async (req, res) => {
+  app.post('/api/product-volume', async (req, res) => {
     if (!req['body']) {
       res.send("no body")
     }
@@ -54,7 +54,7 @@ app.post('/upload', (req, res, next) => {
     });
   })
 
-  app.post('/product-price', async (req, res) => {
+  app.post('/api/product-price', async (req, res) => {
     if (!req['body']) {
       res.send("no body")
     }
@@ -68,13 +68,13 @@ app.post('/upload', (req, res, next) => {
     });
   })
 
-  app.get('/vendors', async (req, res) => {
+  app.get('/api/vendors', async (req, res) => {
     getVendorsData(function(result) {
       res.status(200).send(result);
     });
   })
 
-  app.get('/:vendorId', async (req, res) => {
+  app.get('/api/:vendorId', async (req, res) => {
     if (!req.params['vendorId']) {
       res.status(404).send();
     } else {

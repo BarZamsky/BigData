@@ -24,7 +24,7 @@ class Upload extends Component {
     data.append('file', this.state.selectedFile, this.state.selectedFile.name)
 
     axios
-      .post("http://localhost:8080/upload", data, {
+      .post("/api/upload", data, {
         onUploadProgress: ProgressEvent => {
           this.setState({
             loaded: (ProgressEvent.loaded / ProgressEvent.total) * 100,

@@ -42,7 +42,7 @@ class VendorsChart extends Component {
 
   componentDidMount = (e) => {
     axios
-      .get("http://localhost:8080/vendors")
+      .get("/api/vendors")
       .then(response => {
         console.log(response.data);
         let lables = [];
@@ -85,7 +85,7 @@ class VendorsChart extends Component {
   }
 
   getVendorInvoicesSummary = (vendor) => {
-      axios.get(`http://localhost:8080/${vendor}`)
+      axios.get(`/api/${vendor}`)
       .then(response => {
         console.log(response.data);
         if (response.data.length == 0) {
