@@ -14,7 +14,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-const DIST_DIR = path.join(__dirname, '../../dist'); // NEW
+const DIST_DIR = path.join(__dirname, '../../../dist'); // NEW
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 app.use(express.static(DIST_DIR));
