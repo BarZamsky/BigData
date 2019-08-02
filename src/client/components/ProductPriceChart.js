@@ -7,7 +7,7 @@ import Select from 'react-select';
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import '../App.css'
+import '../app.css'
 
 const options = [
   { value: 'milk 1%', label: 'Milk 1%' },

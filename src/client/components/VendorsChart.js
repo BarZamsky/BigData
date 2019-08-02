@@ -9,7 +9,7 @@ import {
 import {Line as LineChart} from 'react-chartjs-2';
 import axios from 'axios';
 
-import '../App.css'
+import '../app.css'
 
 class VendorsChart extends Component {
   constructor(props) {

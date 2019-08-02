@@ -4,7 +4,7 @@ import history from '../history';
 import ProductBuyChart from './ProductBuyChart'
 import ProductPriceChart from './ProductPriceChart'
 
-import '../App.css'
+import '../app.css'
 
 class Analytics extends Component {
 

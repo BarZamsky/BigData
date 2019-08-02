@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import history from '../history';
 import axios from 'axios'
 
-import '../App.css'
+import '../app.css'
 
 class Upload extends Component {
   constructor() {
