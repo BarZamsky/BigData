@@ -14,7 +14,7 @@
   "author": "Bar zamsky & Shahar botesazan",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "chart.js": "^2.8.0",
     "child_process": "^1.0.2",
